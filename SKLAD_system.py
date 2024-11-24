@@ -1,12 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
-import cx_Oracle
-
+import sqlite3
+import os
 
 from tkinter import messagebox
 
-def IntCheck(Value, zina): 
+def IntCheck(Value, zina):
     try:
         intValue = int(Value)
         return True
@@ -414,12 +414,20 @@ class MyGUI:
         self.BuvetSakumsAdminSkats()
         
 def main():
-    conStr = 'C##SKLADUSER/Sklad_password@localhost:1521/orcl'
+    myfile = "sklad.db"
+    if os.path.isfile(myfile):
+        os.remove(myfile)
+        
     global conn
-    conn = cx_Oracle.connect(conStr)
+    conn = sqlite3.connect("sklad.db")
     global cur
     cur = conn.cursor()
-    
+
+    with open('table_creation.sql', 'r') as sql_file:
+        sql_script = sql_file.read()
+    cur.executescript(sql_script)
+    conn.commit()
+
     MyGUI()
     
     cur.close()
