@@ -3,7 +3,7 @@ CREATE TABLE
         ID NUMERIC NOT NULL PRIMARY KEY,
         VARDS VARCHAR(50) NOT NULL,
         UZVARDS VARCHAR(50) NOT NULL,
-        EPASTS VARCHAR(100),
+        EPASTS VARCHAR(100) NOT NULL,
         PAROLE VARCHAR(30) NOT NULL,
         DARBAVIETA VARCHAR(100),
         TIPS VARCHAR(30) NOT NULL
@@ -50,6 +50,6 @@ CREATE TABLE
     );
 
 INSERT INTO
-    PROFILI (ID, VARDS, UZVARDS, PAROLE, TIPS)
+    PROFILI (ID, VARDS, UZVARDS, EPASTS, PAROLE, TIPS)
 VALUES
-    (1, 'Jānis', 'Programmētājs', 'P@55w0rd', 'Admin');
+    (1, 'Jānis', 'Programmētājs', 'janis@mail.com', 'P@55w0rd', 'Admin');
